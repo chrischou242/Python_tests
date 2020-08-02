@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if messages %}
+
+        {% for message in messages %}    
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+        {% endfor %}
+    
+    {% endif %}
+    <h1>Hello {{user.first_name}} Lets edit your trip!</h1>
+    <form action="/make_edit/{{trip.id}}" method="POST">
+        {% csrf_token %}
+        <p>
+            <label for="destination">Destination</label>
+            <input type="text" name='destination' id='destination'>
+        </p>
+
+        <p>
+            <label for="start_date">start date</label>
+            <input type="date" name='start_date' id='start_date'>
+        </p>
+        <p>
+            <label for="end_date">start date</label>
+            <input type="date" name="end_date" id="end_date">
+        </p>
+        <p>
+            <label for="plan">plan</label>
+            <input type="text" name='plan' id="plan" required>
+        </p>
+        <button type="submit">submit</button>
+        <a href="/trip_planner">Cancel</a>
+    </form>
+</body>
+</html>

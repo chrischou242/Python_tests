@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style_store.css' %}">  
+</head>
+<body>
+    <div class="wrapper">
+    
+        <div class="box">
+
+            <div class="logout">
+    <a href="/logout">LogOut</a>
+    {% if messages %}
+
+        {% for message in messages %}    
+            <li>{{ message }}</li>    
+        {% endfor %}
+    
+    {% endif %}
+            </div>
+
+            <div class="name">
+    <h1>Hello {{user.first_name}}, Welcome to our Restaurants</h1>
+    <table>
+        <thead>
+            <th>Owner</th>
+            <th>Restaurant Name</th>
+            <th>Cuisine</th>
+            <th>Actions</th>
+        </thead>
+        
+        <tbody>
+            {% for store in stores %}
+            <tr>
+                <td>{{store.user.first_name}}</td>
+                <td>{{store.store_name}}</td>
+                <td>{{store.cuisine}}</td>
+                <td>
+                    <a href="/join/{{store.id}}">Eat</a>
+                    {% if request.session.uid == store.user.id %}
+                    <a href="/close/{{store.id}}">Close</a>
+                    {% endif %}
+                </td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+                </div>
+
+                <div class="resturant">
+    <h2>Create Your Restaurant</h2>
+    <form action="/stores" method="POST">
+        {% csrf_token %}
+        <p>
+            <label for="store_name">Store Name</label>
+            <input type="text" name="store_name" id='store_name'>
+        </p>
+    
+        <p>
+            <label for="foods_sold">Popular choices for people to eat</label>
+            <input type="text" name ='foods_sold' id='foods_sold'>
+
+        </p>
+    
+        <p>
+            <label for="cuisine">What kind of cuisine food do you sell</label>
+            <input type="text" name="cuisine" id='cuisine' required>
+        </p>
+        <button type="submit">Create My Restaurant</button>
+        
+    </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if messages %}
+
+        {% for message in messages %}    
+            <li>{{ message }}</li>    
+        {% endfor %}
+    
+    {% endif %}
+    <h1>Hello {{user.first_name}} {{user.last_name}}</h1>
+    <form action="/thoughts" method='POST'>
+        {% csrf_token %}
+        <p>
+        <label for="thought"></label>
+        <textarea name="thoughs" id="thought" cols="30" rows="1"></textarea>
+        </p>
+        
+        <button type="submit">Add Thought</button>
+    
+    
+    
+    
+    </form>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello {{user.first_name}}</h1>
+    <h2>Your Wish list</h2>
+
+    <table>
+        <thead>
+            <th>Item</th>
+            <th>Date Added</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            {% for wish in user.wishes.all %}
+            <tr>
+                <td>{{wish.item}}</td>
+                <td>{{wish.created_at.date}}</td>
+                <td>{{wish.updated_at.date}}</td>
+                <td>
+                    <a href="/edit/{{wish.id}}/wish">Edit Wish</a>
+                    <a href="remove/{{wish.id}}/wish">Remove Wish</a>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/wishes/create">Make a wish!</a>
+    <a href="/logout">Log out</a>
+</body>
+</html>

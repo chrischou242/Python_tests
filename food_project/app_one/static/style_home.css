@@ -1,0 +1,20 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper{
+    background-color:lightblue;
+    width: 1000px;
+    margin: auto;
+    background-image: url('KrustyKrab.jpg');
+    background-repeat:no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+.box{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: stretch;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if messages %}
+
+        {% for message in messages %}    
+            <li>{{ message }}</li>    
+        {% endfor %}
+    
+    {% endif %}
+    <p>
+        <a href="/logout">Log Out</a>
+    </p>
+    <h1>Hello {{user.first_name}} {{user.last_name}}</h1>
+    <form action="/thoughts" method="POST">
+        {% csrf_token %}
+        <p>Post a Great Thought Here!</p>
+        <label for="thought"></label>
+        <textarea name="thought" id="thought" cols="40" rows="5" required></textarea>
+        <button type="submit">Add a thought</button>
+        
+    </form>
+    
+    
+    {% for thought in thoughts %}
+    <p>{{thought.user.first_name}} says:</p>
+        <textarea cols="40" rows="5">{{thought.thought}}</textarea>
+        <a href="/thoughts/{{thought.id}}">Details</a>
+          {% if request.session.uid == thought.user.id %}
+        <a href="/delete/{{thought.id}}">Delete</a>
+            {% endif %}
+        {% endfor %}
+      
+      
+
+       
+
+</body>
+</html>

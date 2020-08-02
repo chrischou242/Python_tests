@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In Form</title>
+    <!-- {% load static %}	
+    <link rel="stylesheet" href="{% static '/style_home.css' %}">     -->
+</head>
+<body>
+    {% if messages %}
+
+    {% for message in messages %}    
+        <li>{{ message }}</li>    
+    {% endfor %}
+
+{% endif %}
+    <h1>Log in</h1>
+    
+    
+    <div class="wrapper">
+        
+    
+        <div class="home_page"> 
+            <div class="login">
+            <fieldset>
+        <legend>Login</legend>
+    <form action="/login" method="POST">
+        {% csrf_token %}
+        <!-- <p>
+            <label for="first_name">First Name</label>
+            <input type="text" name="first_name" id="first_name">
+        </p> -->
+
+       
+        <p>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email">
+        </p>
+
+        <p>
+            <label for="password">Password</label>
+            <input type="text" name="password" id="password">
+        </p>
+    
+        <button type="submit">Log In</button>
+        </form>
+    </fieldset>
+</div> 
+        
+
+        <div class="register">
+            <div class="registering">
+    <h1>Register</h1>
+    <fieldset>
+        <legend>Register</legend>
+        <form action="/register" method="POST">
+            {% csrf_token %}
+            <p>
+                <label for="first_name">First Name</label>
+                <input type="text" name="first_name" id="first_name">
+            </p>
+
+            <p>
+                <label for="last_name">Last Name</label>
+                <input type="text" name="last_name" id='last_name'>
+            </p>
+            <p>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email">
+            </p>
+
+            <p>
+                <label for="password">Password</label>
+                <input type="text" name="password" id="password">
+            </p>
+        
+            <p>
+                <label for="password_confirm">password_confirm</label>
+                <input type="text" name="password_confirm" id="password_confirm">
+            </p>
+            <button type="submit">Register</button>
+        </form>
+
+    </fieldset>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

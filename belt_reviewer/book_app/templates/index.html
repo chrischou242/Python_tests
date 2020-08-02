@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+        {{ message }}
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    <!-- Register -->
+    <h1>Welcome</h1>
+    <fieldset>
+      <legend>Register</legend>
+      <form action="/register" method="post">
+        {% csrf_token %}
+        <p>
+          <label for="name">Name</label>
+          <input type="text" name="name" />
+        </p>
+        <p>
+          <label for="alias">Alias</label>
+          <input type="text" name="alias" />
+        </p>
+        <p>
+          <label for="email">Email</label>
+          <input type="text" name="email" />
+        </p>
+        <p>
+          <label for="password">Password</label>
+          <input type="password" name="password" />
+        </p>
+        <p>
+          <label for="confirm_password">Confrim password</label>
+          <input type="password" name="confirm_password" />
+        </p>
+        <button type="submit">Register</button>
+      </form>
+    </fieldset>
+
+    <!-- Login -->
+    <fieldset>
+      <legend>Login</legend>
+      <form action="/login" method="post">
+        {% csrf_token %}
+        <p>
+          <label for="login_email">Email</label>
+          <input type="email" name="login_email" />
+        </p>
+        <p>
+          <label for="login_password">Password</label>
+          <input type="password" name="login_password" />
+        </p>
+        <button type="submit">Login</button>
+      </form>
+    </fieldset>
+  </body>
+</html>

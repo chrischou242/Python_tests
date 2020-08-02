@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <a href="/books">Home</a>
+    <a href="/books/add">Add Book and Review</a>
+    <a href="/logout">Logout</a>
+    <h1>
+      User Alias: {{ entire_logged_in_user_object.alias }}
+    </h1>
+    <p>Name: {{ entire_logged_in_user_object.name }}</p>
+    <p>Email: {{ entire_logged_in_user_object.email }}</p>
+    <p>
+      Total Reviews: {{ entire_logged_in_user_object.user_reviews.all |length }}
+    </p>
+
+    <h2>Posted Reviews on the following books</h2>
+    {% for review in entire_logged_in_user_object.user_reviews.all %}
+    <p>
+      <a href="/books/{{ review.book.id }}">{{ review.book.book_title }}</a>
+    </p>
+    {% endfor %}
+    <a href="">Delete</a>
+  </body>
+</html>

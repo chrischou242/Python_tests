@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if messages %}
+
+    {% for message in messages %}    
+        <li>{{ message }}</li>    
+    {% endfor %}
+
+{% endif %}
+    <h1>Hello {{user.first_name}} Let's edit your wish!</h1>
+        <form action="/edit/{{wish.id}}/wish" method='POST'>
+            {% csrf_token %}
+        <p>
+            <label for="item">I wish for</label>
+            <input type="text" name="item" id='name' value="{{wish.item}}">
+        </p>
+        
+        <p>
+            <label for="description">Description</label>
+            <input type="text" name="description" id="description" value="{{wish.description}}">
+        </p>
+        
+        <button type="submit">Edit</button>
+        <a href="/wishes">Cancel</a>
+        
+        </form>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if messages %}
+
+        {% for message in messages %}    
+            <li>{{ message }}</li>    
+        {% endfor %}
+    
+    {% endif %}
+    <h1>Hello {{user.first_name}} {{user.last_name}}</h1>
+    <h2>Quotes</h2>
+    {% for quote in user.quotes.all %}
+        <p>
+            {{quote.author}}:{{quote.quote}}
+
+            <p>Posted by: {{user.first_name}}</p>
+        </p>
+        {% endfor %}
+    <form action="/forms" method="POST">
+        {% csrf_token %}
+
+        <p>
+            <label for="author">Author</label>
+            <input type="text" name="author" id="author">
+        </p>
+
+        <p>
+            <label for="quote">Quote</label>
+            <textarea name="quote" id="quote" cols="30" rows="1"></textarea>
+        </p>
+
+        <button type="submit">Submit</button>
+    </form>
+
+
+
+</body>
+</html>
